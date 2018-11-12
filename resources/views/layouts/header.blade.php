@@ -31,15 +31,15 @@
                 <a class="navbar-brand mr-auto mr-lg-0" href="{{url('/')}}"><img src="{{asset('public/imgs/logo.png')}}" alt="Hospital logo" title="Al Azhar Hospital" /></a>
             </div>
             <div class="col-lg-8 col-md-8 ml-auto text-right d-flex align-items-center justify-content-center justify-content-sm-between mb-lg-0 mb-3 mt-lg-0 mt-2">
-                <!-- <ul class="list-inline mb-0 d-flex align-items-end justify-content-center justify-content-sm-between w-sm-100 header-helpline"> -->
-                <ul class="list-inline mb-0 d-flex align-items-end flex-column w-sm-100 header-helpline">
-                    <!-- <li class="list-inline-item text-left ml-lg-5">
+                <ul class="list-inline mb-0 d-flex align-items-end justify-content-center justify-content-sm-between w-sm-100 header-helpline">
+                <!-- <ul class="list-inline mb-0 d-flex align-items-end flex-column w-sm-100 header-helpline"> -->
+                    <li class="list-inline-item text-left ml-lg-5">
                         <div class="d-flex">
-                            <div class="mr-3"> <img src="assets/imgs/icon-emergency.png" width="36" height="" alt=""> </div>
+                            <div class="mr-3"> <img src="{{asset('public/imgs/icon-emergency.png')}}" width="36" height="" alt=""> </div>
                             <div class="d-inline"> <small>Emegency Helpline</small>
-                                <h4 class="text-green"><strong> 92-000-5464</strong></h4> </div>
+                                <h4 class="text-green"><strong>+966 11 236 6788</strong></h4> </div>
                         </div>
-                    </li> -->
+                    </li>
                     <li class="list-inline-item"> <img src="{{asset('public/imgs/vision-2030.png')}}" class="logo-vision" alt="" /> </li>
                 </ul>
             </div> <a href="#" class="lang-toggle position-absolute"><span class="text-cairo">العربية</span> <i class="flaticon-internet"></i></a> </div>

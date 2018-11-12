@@ -168,30 +168,54 @@
                     <h3>We have the best <span class="text-green">Doctors</span> of the country</h3> </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/male-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Karim Bakri</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
+                <div class="col-lg-2 col-md-6 col-sm-6 text-center">
+                    <div class="rounded-circle overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/doctor-thumb.png')}}" class="img-fluid" alt=""> </div>
+                    <h4 class="dr-name">Dr. Mohd Al Marie</h4>
+                    <p class="ms-timings">08:00 AM - 06:00 PM</p>
                     <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Ophthalmologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/female-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Sofia Ahmed</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
+                    <p class="department-name">Laboratory</p>
+                    <a href="#" class="btn btn-sm btn-green-outline mb-3">Book Appointment</a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 text-center">
+                    <div class="rounded-circle overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/doctor-thumb.png')}}" class="img-fluid" alt=""> </div>
+                    <h4 class="dr-name">Dr. Safa Al Tayeb</h4>
+                    <p class="ms-timings">08:00 AM - 06:00 PM</p>
                     <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Gynecologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
-                <div class="col-lg-3 col-md-6 col-sm-6  text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/male-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Stephen F. Bansberg</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
-                    <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Neurologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
-                <div class="col-lg-3 col-md-6 col-sm-6  text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/female-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Misbah Baqir</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
-                    <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Pulmonologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
+                    <p class="department-name">Pharmacy</p>
+                    <a href="#" class="btn btn-sm btn-green-outline mb-3">Book Appointment</a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 text-center">
+                    <div class="rounded-circle overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/doctor-thumb.png')}}" class="img-fluid" alt=""> </div>
+                    <h4 class="dr-name">Dr. Saeid Shuman</h4>
+                    <p class="ms-timings">08:00 AM - 06:00 PM</p>
+                    <p class="ms-days">Saturday - Friday</p>                    
+                    <p class="department-name">Orthopedic</p>
+                    <a href="#" class="btn btn-sm btn-green-outline mb-3">Book Appointment</a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 text-center">
+                    <div class="rounded-circle overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/doctor-thumb.png')}}" class="img-fluid" alt=""> </div>
+                    <h4 class="dr-name">Dr. Emad Abduljabar</h4>
+                    <p class="ms-timings">08:00 AM - 06:00 PM</p>
+                    <p class="ms-days">Saturday - Friday</p>                
+                    <p class="department-name">Dermatology</p>
+                    <a href="#" class="btn btn-sm btn-green-outline mb-3">Book Appointment</a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 text-center">
+                    <div class="rounded-circle overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/doctor-thumb.png')}}" class="img-fluid" alt=""> </div>
+                    <h4 class="dr-name">Dr. Fateh Alwan</h4>
+                    <p class="ms-timings">08:00 AM - 06:00 PM</p>
+                    <p class="ms-days">Saturday - Friday</p>           
+                    <p class="department-name">Neurology</p>
+                    <a href="#" class="btn btn-sm btn-green-outline mb-3">Book Appointment</a>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 text-center">
+                    <div class="rounded-circle overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/doctor-thumb.png')}}" class="img-fluid" alt=""> </div>
+                    <h4 class="dr-name">Dr. Mostafa Metwaly</h4>
+                    <p class="ms-timings">08:00 AM - 06:00 PM</p>
+                    <p class="ms-days">Saturday - Friday</p>        
+                    <p class="department-name">Internal Medicine</p>
+                    <a href="#" class="btn btn-sm btn-green-outline mb-3">Book Appointment</a>
+                </div>
             </div>
         </div>
     </section>
