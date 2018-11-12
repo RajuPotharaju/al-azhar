@@ -76,10 +76,6 @@ section {
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
 }
 
-.cursor {
-    cursor: pointer;
-}
-
 
 /* Background Color */
 
@@ -384,12 +380,6 @@ section {
     font-weight: 600;
 }
 
-#medicalSpecialist .rounded-circle {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-}
-
 #medicalSpecialist .dr-name {
     font-size: 1rem;
     font-weight: 600;
@@ -631,9 +621,9 @@ section {
 }
 /* Sections */
 .section-banner {
-    padding-top: 4rem;
+    padding-top: 100px;
     padding-right: 0px;
-    padding-bottom: 3rem;
+    padding-bottom: 100px;
     padding-left: 0px;
     margin-top: 0px;
     margin-right: 0px;
@@ -723,13 +713,6 @@ section {
     display: inline-block;
     position: relative;
     border: 10px solid #fbfbfb !important;
-}
-
-.page-head-sm h2 {
-    font-size: 1.4rem;
-}
-.page-head-sm:after {
-    height: 4px !important;
 }
 
 .para {
@@ -841,12 +824,6 @@ section {
     padding-right: 1.8rem;
 }
 
-.btn-sm {
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
-    font-size: 0.8rem;
-}
-
 .btn:focus,
 .btn.focus {
     box-shadow: none;
@@ -939,7 +916,9 @@ section {
 
 /* Media Quiries */
 @media (min-width: 992px) {    
-    /* .navbar-brand img {    } */
+    .navbar-brand img {
+        
+    }
 
     .dropdown:hover>.dropdown-menu {
         display: block;
