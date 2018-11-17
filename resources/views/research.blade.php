@@ -35,8 +35,38 @@
     <body>
         @include('layouts.header')
         @include('layouts.nav')
-	<!-- /Page Content -->
-		Will be updated soon.    
+	    <!-- /Page Content --> <section class="p-0">
+        <div class="section-container container">
+            <div class="section-banner section-about text-white">
+                <div class="section-overlay"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="section-title">Research</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Research</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="pt-3 pb-3 mh-400">
+            <div class="container">
+                <h4 class="text-center"> Will be updated soon.</h4>
+            </div>
+        </section>    
     	<!-- /Page Content -->
 	@include('layouts.footer')
     </body>

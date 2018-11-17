@@ -59,14 +59,65 @@ class JobsController extends Controller
     }
 
     public function applyForThisJob($job_id){
-    	return view('jobs.apply-job')->with('job_id',$job_id);
+        //get job name.
+        $job_details = \Alazhar\jobs::find($job_id);
+        return view('jobs.apply-job')->with('job_id',$job_id)->with('job_name',$job_details->name_en);
     }
-    public function saveJobApplication(\Alazhar\Http\Requests\SaveJobApplicationDetails $request)
-    {
+    public function saveJobApplication(\Alazhar\Http\Requests\SaveJobApplicationDetails $request,$job_id = '')
+    {   
         $uniqueFileName = uniqid() . $request->file('resume_file')->getClientOriginalName() . '.' . $request->file('resume_file')->getClientOriginalExtension();
-        $file = $request->file('resume_file'); 
+        $file = $request->file('resume_file');
         $upload = $file->move(base_path('public/files/resumes'));
-		echo $upload;die;
+        $attachment['attachment'] = substr($file,5,strlen($file)-1);
+        //save file name to DB:
+        $saving_files = \Alazhar\Attachments::create($attachment);
+        if(isset($job_id) && ($job_id>0)){
+            $job_application_details['job_id'] = $job_id;  
+        }
+        //saveUserDetails
+        $result = \Alazhar\Http\Controllers\Common\CommonFunctions::saveUserDetails($request->all());
+        $job_application_details['applicant_id'] = $result;
+        $job_application_details['attachment_id'] = $saving_files->id; 
+        $job_application_created = \Alazhar\JobApplication::create($job_application_details); 
+        if($job_application_created->id){
+            return redirect()->route('vewsJobs')->with('status', 'You have successfully applied.');
+        }else{
+            return redirect()->route('vewsJobs')->with('status', 'Something went wrong.');
+        }
+    } 
+    
+
+    public function showJobApplications(){
+        //get jobs Applications.
+        $user_name = Auth()->user()->name;
+        $applications = \Alazhar\JobApplication::getJobApplications();
+        return view('jobs.job_applications')->with('data',$applications)->with('user_name',$user_name);
+    }
+
+    public function postJob(){
+        $user_name = Auth()->user()->name;
+        return view('jobs.post_job')->with('user_name',$user_name);
+    }
+    //save Posted JObs.
+
+    public function savePostedJob(\Alazhar\Http\Requests\SaveJobPosts $request){
+            
+            $request_array = array();
+            $request_array['name_en'] = $request['job_title'];
+            $request_array['department_id'] = $request['category'];
+            $request_array['job_desc_en'] = $request['job_desc'];
+            $is_job_posted = \Alazhar\jobs::create($request_array);
+            if(isset($is_job_posted->id) && ($is_job_posted->id >0)){
+                    return redirect(url('/home'))->with('status', 'You have successfully posted a job.');
+            }else{
+                    return redirect(url('/home'))->with('status', 'Some Thing Went Wrong tryagain later...');
+            }
+    }
+    //jobs grid.
+    public function viewAllJobs(){
+        echo "<pre>";
+        $jobs = \Alazhar\jobs::all()->take(4);
+        print_r($jobs->toArray());die;
 
     }
 }

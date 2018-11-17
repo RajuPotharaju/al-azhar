@@ -75,6 +75,11 @@
                             </div>
                         </div>
                     </div>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <div class="row pt-3">
                         <div class="col-md-12">  
                         <div class="media bg-deep p-4 mb-2">
@@ -84,27 +89,24 @@
                                     <form  class="w-100" action = "{{url('/saveJobApplication')}}" method = "post" files='true' enctype="multipart/form-data">
                                 @endif
                                 {{ csrf_field() }}
+
+                                <h2>{{$job_name or ' '}}</h2>
                                 <h5 class="h5">PLEASE FILL IN THESE DETAILS</h5>
                                 @if(!isset($job_id))
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <select name="" id="" class="form-control">
-                                                <option selected disabled>Select Departments</option>
-                                                <option value="0">Admin</option>
-                                                <option value="0">Allied Health</option>
-                                                <option value="0">Nursing</option>
-                                                <option value="0">Physicians</option>
+                                            <select name="department_id" id="department_id" class="form-control">
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <select name="" id="" class="form-control">
+                                            <select name="position_id" id="" class="form-control">
                                                 <option selected disabled>Open Positions</option>
                                                 <option value="0">Executive</option>
                                                 <option value="0">Pharmasist</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <select name="" id="" class="form-control">
+                                            <select name="exp_id" id="" class="form-control">
                                                 <option selected disabled>Experience</option>
                                                 <option value="0">0 - 3</option>
                                                 <option value="0">3 - 5</option>

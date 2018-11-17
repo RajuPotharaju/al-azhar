@@ -108,40 +108,71 @@
                         </div>
                         <div class="col-md-8">
                             <!-- Contact Form -->
-                            <form id="contact_form" name="contact_form" class="contact_form" action="" method="post" novalidate="novalidate">
+                            <form id="contact_form" name="contact_form" class="contact_form" action="{{route('saveContactedDetails')}}" method="post" novalidate="novalidate">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="form_name">Name <small>*</small></label>
-                                            <input id="form_name" name="form_name" class="form-control" type="text" placeholder="Enter Name" required="" aria-required="true"> 
+                                            <input id="form_name" name="full_name" class="form-control" type="text" placeholder="Enter Name" required="" aria-required="true">
+                                            @if(!empty($errors->has('full_name')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('full_name') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="form_email">Email <small>*</small></label>
-                                            <input id="form_email" name="form_email" class="form-control required email" type="email" placeholder="Enter Email" aria-required="true"> </div>
+                                            <input id="form_email" name="email" class="form-control required email" type="email" placeholder="Enter Email" aria-required="true"> 
+                                            @if(!empty($errors->has('email')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('email') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="form_name">I have a... <small>*</small></label>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Enquiry</option>
-                                                <option value="">Suggestion</option>
-                                                <option value="">Complaint</option>
+                                            <select name="reason" id="" class="form-control">
+                                                <option value="1">Enquiry</option>
+                                                <option value="2">Suggestion</option>
+                                                <option value="3">Complaint</option>
                                             </select>
+                                            @if(!empty($errors->has('reason')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('reason') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="form_phone">Phone</label>
-                                            <input id="form_phone" name="form_phone" class="form-control" type="text" placeholder="Enter Phone"> </div>
+                                            <input id="form_phone" name="mobile" class="form-control" type="text" placeholder="Enter Phone">
+                                            @if(!empty($errors->has('mobile')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('mobile') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="form_name">Message</label>
-                                    <textarea id="form_message" name="form_message" class="form-control required" rows="5" placeholder="Enter Message" aria-required="true"></textarea>
+                                    <textarea id="form_message" name="message" class="form-control required" rows="5" placeholder="Enter Message" aria-required="true"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">

@@ -35,7 +35,7 @@
                 <div class="row mt-4">
                     <div class="col-md-4">
                         <ul class="list-unstyled">
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="{{url('/')}}">Home</a></li>
                             <li><a href="#">Medical Specialist</a></li>
                             <li><a href="#">Research &amp; Development</a></li>
                             <li><a href="#">Medical Package</a></li>
@@ -62,10 +62,10 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-inline d-flex justify-content-md-between bottom mt-lg-2">                                
-                            <li class="list-inline-item"><a href="news-update.php">News &amp; Updates</a></li>
+                            <li class="list-inline-item"><a href="{{route('news')}}">News &amp; Updates</a></li>
                             <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="contact-us.php">Contact Us</a></li>
-                            <li class="list-inline-item"><a href="faqs.php">FAQs</a></li>
+                            <li class="list-inline-item"><a href="{{route('showContactUsForm')}}">Contact Us</a></li>
+                            <li class="list-inline-item"><a href="{{route('faqs')}}">FAQs</a></li>
                             <li class="list-inline-item"><a href="#">Sitemap</a></li>
                         </ul>
                     </div>
@@ -94,21 +94,40 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{asset('public/js/bootstrap.min.js')}}"></script>
-<!--<script src="{{asset('public/js/main.js')}}"></script>  
-<script src="{{asset('public/js/google-map-init.js')}}"></script>
-<script src="{{asset('public/js/jquery.min.js')}}"></script>
--->
 <script src="{{asset('public/js/bootstrap.min.js.map')}}"></script>
+
+//dateandtimepicker...
+
+<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css"/>
+
+
+<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css"/>
+
+
+<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css.map"/>
+
+
+<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css"/>
+
+<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
 <script>
     $(document).ready(function() {
-        /*$.ajax({
-            url: "/getJobs",
-            type: "get", 
-            success: function(result){
-                $("#job_id").html(result);
-            }
-        }); */
-
+        $('#date_time_picker1').datetimepicker({
+            
+        });
+        $("#select_lang").change(function(){
+            $lang_id = $("#select_lang").find(":selected").val();
+            $.ajax({
+                    url: "/alazhar/"+$lang_id,
+                    type: "GET",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+        });
         //Get Options For Depts
         $.ajax({
             url: "getDepartments",

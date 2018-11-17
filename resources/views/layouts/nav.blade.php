@@ -41,7 +41,7 @@
                 <li class="nav-item dropdown"> 
                    <a class="nav-link dropdown-toggle" href="#" id="mediaCenter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Media Center</a>
                    <div class="dropdown-menu" aria-labelledby="mediaCenter"> 
-                       <a class="dropdown-item" href="{{route('research')}}">News &amp; Events</a> 
+                       <a class="dropdown-item" href="{{route('news-details')}}">News &amp; Events</a> 
                        <a class="dropdown-item" href="{{route('photo-gallery')}}">Photo Gallery</a> 
                        <a class="dropdown-item" href="{{route('video-gallery')}}">Video Gallery</a> 
                    </div>

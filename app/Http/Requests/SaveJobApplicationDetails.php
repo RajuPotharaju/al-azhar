@@ -25,13 +25,13 @@ class SaveJobApplicationDetails extends FormRequest
     {
         return [
             'full_name' => 'required',
-            'email'=>'required|email',
+            'email'=>'required|email|unique:users',
             'date_of_birth'=>'required',
-            'mobile'=>'required',
+            'mobile'=>'required|numeric|digits:10',
             'qualification'=>'required',
             'location'=>'required',
             'resume_file'=>'required',
-            'resume_content'=>'required'
+            'resume_content'=>'required|min:150|max:10000'
         ];
     }
 }

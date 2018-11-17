@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-6 mb-lg-0 mb-3">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="faqs.php">FAQs</a></li>
-                    <li class="list-inline-item"><a href="refer-a-friend.php">Refer a Friend</a></li>
+                    <li class="list-inline-item"><a href="{{route('faqs')}}">FAQs</a></li>
+                    <li class="list-inline-item"><a href="{{route('referral')}}">Refer a Friend</a></li>
                     <li class="list-inline-item"><a href="knowledge-base.php">Knowledge Base</a></li>
                     <li class="list-inline-item"><a href="news-update.php">News & Update</a></li>
                 </ul>
@@ -17,6 +17,11 @@
                     <li class="list-inline-item"><a href="https://www.facebook.com"><img src="{{asset('public/imgs/logo-twitter.svg')}}" alt="" height="22"></a></li>
                     <li class="list-inline-item"><a href="https://www.facebook.com"><img src="{{asset('public/imgs/logo-linkedin.svg')}}" alt="" height="22"></a></li>
                     <li class="list-inline-item"><a href="https://www.facebook.com"><img src="{{asset('public/imgs/logo-youtube.svg')}}" alt="" height="22"></a></li>
+                    <select name="reason" id="select_lang">
+                        <option >Chose language</option>
+                        <option value="en">English</option>
+                        <option value="ar">Arabic</option>
+                    </select>
                 </ul>
             </div>
         </div>

@@ -35,8 +35,197 @@
     <body>
         @include('layouts.header')
         @include('layouts.nav')
-	<!-- /Page Content -->
-		Will be updated soon.    
+	    <!-- /Page Content --> <section class="p-0">
+        <div class="section-container container">
+            <div class="section-banner section-about text-white">
+                <div class="section-overlay"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="section-title">Appointment</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Appointment Booking</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="pt-3 pb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-head">
+                                <h2>Book Appointment</h2> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row pt-3">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="icon-box left media bg-deep p-4 mb-2">
+                                        <a class="media-left pull-left mr-4" href="#"><img src="assets/imgs/icon-location.svg" alt="" width="40"></a>
+                                        <div class="media-body"> 
+                                            <strong class="text-light-blue">OUR OFFICE LOCATION</strong>
+                                            <p class="mt-2 mb-2">Abu Hurairah, An Nasim Ash Sharqi، Riyadh 14245, Kingdom of Saudi Arabia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-12">
+                                    <div class="icon-box left media bg-deep p-4 mb-2">
+                                        <a class="media-left pull-left mr-4" href="#"><img src="assets/imgs/icon-phone.svg" alt="" width="40"></a>
+                                        <div class="media-body"> 
+                                            <strong class="text-light-blue">OUR CONTACT NUMBER</strong>
+                                            <p class="mt-2 mb-2">+966 11 236 6788</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-12">
+                                    <div class="icon-box left media bg-deep p-4 mb-2">
+                                        <a class="media-left pull-left mr-4" href="#"><img src="assets/imgs/icon-mail.svg" alt="" width="40"></a>
+                                        <div class="media-body"> 
+                                            <strong class="text-light-blue">OUR CONTACT E-MAIL</strong>
+                                            <p class="mt-2 mb-2">support@alazharhospitals.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <div class="col-md-8">
+                            <!-- Contact Form -->
+                            <form id="contact_form" name="contact_form" class="contact_form" action="{{route('storeAppointment')}}" method="post" novalidate="novalidate">
+                                {{ csrf_field() }}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="form_name">Name <small>*</small></label>
+                                            <input id="form_name" name="full_name" class="form-control" type="text" placeholder="Enter Name" required="" aria-required="true">
+                                            @if(!empty($errors->has('full_name')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('full_name') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="form_email">Email <small>*</small></label>
+                                            <input id="form_email" name="email" class="form-control required email" type="email" placeholder="Enter Email" aria-required="true"> 
+                                            @if(!empty($errors->has('email')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('email') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="form_phone">Phone <small>*</small></label>
+                                            <input id="form_phone" name="mobile" class="form-control" type="text" placeholder="Enter Phone">
+                                            @if(!empty($errors->has('mobile')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('mobile') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="form_name">Select Department</label>
+                                            <select name="department_id" id="" class="form-control">
+                                                <option value="1">Enquiry</option>
+                                                <option value="2">Suggestion</option>
+                                                <option value="3">Complaint</option>
+                                            </select>
+                                            @if(!empty($errors->has('department_id')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('department_id') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="form_name">Select Doctor</label>
+                                            <select name="doctor_id" id="" class="form-control">
+                                                <option value="31">Enquiry</option>
+                                                <option value="33">Suggestion</option>
+                                                <option value="34">Complaint</option>
+                                            </select>
+                                            @if(!empty($errors->has('doctor_id')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('doctor_id') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="form_name">Appointment for Date <small>*</small></label>
+                                            <input id="date_time_picker1" name="appointment_date" class="form-control" type="text" placeholder="pick a date" required="" aria-required="true">
+                                            @if(!empty($errors->has('appointment_date')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('appointment_date') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="form_name">Why Appointment ? <small>*</small></label>
+                                    <textarea id="form_message" name="appointment_reason" class="form-control required" rows="5" placeholder="Enter Message" aria-required="true"></textarea>
+                                    @if(!empty($errors->has('appointment_reason')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('appointment_reason') }}</span>
+                                                    </div>
+                                                </div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                    <button type="submit" class="btn btn-green mr-2">Send Message</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
     	<!-- /Page Content -->
 	@include('layouts.footer')
     </body>

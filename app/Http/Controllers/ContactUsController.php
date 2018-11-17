@@ -11,6 +11,16 @@ class ContactUsController extends Controller
     }
 
     public function saveContactUsDetails(\Alazhar\Http\Requests\SaveContactUsDetails $request){
-    	return view('contacts.contact-us');
+    	$result = \Alazhar\Http\Controllers\Common\CommonFunctions::saveUserDetails($request->all());
+  		$contact_details = $request->all();
+  		$contact_details['contacted_id'] = $result;
+    	$result = \Alazhar\Contacts::create($contact_details);
+    	//trigger email action.
+    	//$request->all()
+    	if($result->id){
+            return redirect()->route('showContactUsForm')->with('status', 'We heard from you...we will get back to you soon');
+        }else{
+            return redirect()->route('showContactUsForm')->with('status', 'Something went wrong.');
+        } 
     }
 }

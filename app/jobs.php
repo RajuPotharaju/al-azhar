@@ -8,6 +8,8 @@ class jobs extends Model
 {
     protected $table = 'jobs';
 
+    protected $fillable = ['name_en','department_id','job_desc_en'];
+
     public static function jobSearch($job_key = '',$exp_id = '',$dept_id = ''){
     	$jobs = jobs::select('jobs.id','jobs.name_en AS job_name','departments.name_en AS dept_name')
     					->leftJoin('departments', 'jobs.department_id', '=', 'departments.id');

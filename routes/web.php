@@ -10,9 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//{lang_id?}
+//$lang_id = ''
 
-Route::get('/', function () {
-    return view('welcome');
+//logout.
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/', function (){
+	if(isset(\Auth()->user()->id)&&(\Auth()->user()->id) > 0){
+		return redirect(url('/home'));
+	}
+    return view('welcome');//->with('lang_id',$lang_id);
 });
 
 Auth::routes();
@@ -25,6 +33,17 @@ Route::get('/jobs', 'JobsController@viewJobs')->name('vewsJobs');
 Route::get('/getJobs', 'JobsController@getJobs')->name('getJobs');
 Route::get('/getDepartments', 'DepartmentsController@getDepartments')->name('getDepts');
 
+//Jobs-Admin
+Route::get('/applcations', 'JobsController@showJobApplications')->name('applications');
+Route::get('/postJob', 'JobsController@postJob')->name('postJob');
+Route::post('/savepostedjob', 'JobsController@savePostedJob')->name('savePostedJob');
+Route::get('/viewJobs', 'JobsController@viewAllJobs')->name('viewAllJobs');
+
+//Appointments-Admin
+Route::post('/storeappointments', 'AppointmentsController@store')->name('storeAppointment');
+
+
+
 //job search
 Route::post('/jobSearch', 'JobsController@jobSearch')->name('jobSearch');
 Route::get('/showJobDetails/{job_id}', 'JobsController@showJobDetails')->name('showJobDetails');
@@ -34,7 +53,7 @@ Route::post('/saveJobApplication/{job_id?}', 'JobsController@saveJobApplication'
 //contactus
 //contact-us.php
 Route::get('/contactUs', 'ContactUsController@showContactUsForm')->name('showContactUsForm');
-
+Route::post('/saveContactUsDetails', 'ContactUsController@saveContactUsDetails')->name('saveContactedDetails');
 //AboutUsURls
 Route::group(['prefix'=>'aboutUs'], function()
 {
@@ -111,3 +130,24 @@ Route::get('video-gallery', function()
     {	
         return view('video-gallery');
     })->name('video-gallery'); 
+
+//Static Pages
+
+// FAQs
+Route::get('faqs', function() {
+    return view('static_pages.faqs');
+}) -> name('faqs');
+
+// Refer a Friend
+Route::get('referral', function() {
+    return view('referral');
+}) -> name('referral');
+
+// News & Events
+Route::get('news', function() {
+    return view('news');
+}) -> name('news');
+
+Route::get('news-details', function() {
+    return view('news-details');
+}) -> name('news-details');
