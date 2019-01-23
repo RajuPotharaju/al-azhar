@@ -7,7 +7,7 @@
             <h1>Dashboard</h1>
         </div>
         @if (session('status'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" id = "status_message">
                     {{ session('status') }}
                 </div>
         @endif

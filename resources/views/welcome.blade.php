@@ -19,7 +19,7 @@
         <meta property="og:description" content="DESCRIPTION OF PAGE CONTENT" />
         <meta property="og:image" content="{{asset('public/imgs/logo.png')}}" />
         <meta property="og:url" content="http://www.alazharhospitals.com/" />
-        <meta property="og:site_name" content="Al Azhar Hospital" />
+        <meta property="og:site_name" content="Al Azhar Hospital"/>
     
     
         <!-- CSS -->
@@ -167,31 +167,8 @@
                 <div class="col-12"> <span class="sub-head">Medical Specialist</span>
                     <h3>We have the best <span class="text-green">Doctors</span> of the country</h3> </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/male-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Karim Bakri</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
-                    <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Ophthalmologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/female-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Sofia Ahmed</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
-                    <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Gynecologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
-                <div class="col-lg-3 col-md-6 col-sm-6  text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/male-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Stephen F. Bansberg</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
-                    <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Neurologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
-                <div class="col-lg-3 col-md-6 col-sm-6  text-center">
-                    <div class="rounded overflow-hidden mb-2 p-2 bg-white border-grey"> <img src="{{asset('public/imgs/female-doctor.svg')}}" class="" alt="" height="200"> </div>
-                    <h4 class="dr-name">Dr. Misbah Baqir</h4>
-                    <p class="ms-timings">Timings: 4 PM - 8 PM</p>
-                    <p class="ms-days">Saturday - Friday</p>
-                    <p class="department-name">Pulmonologist</p> <a href="#" class="btn btn-green-outline mb-3">Book Appointment</a> </div>
+            <div class="row" id = "showing_doctors">
+                
             </div>
         </div>
     </section>

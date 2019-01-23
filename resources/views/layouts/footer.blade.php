@@ -96,28 +96,21 @@
 <script src="{{asset('public/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('public/js/bootstrap.min.js.map')}}"></script>
 
-//dateandtimepicker...
 
-<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.css"/>
-
-
-<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css"/>
-
-
-<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css.map"/>
-
-
-<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css"/>
-
-<link rel = "stylesheet" type = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"/>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
+<!--datatables-->
+    <link rel="stylesheet" type="text/css" href="{{asset('public/datatables/css/jquery.dataTables.css')}}">
+    <script type="text/javascript" charset="utf8" src="{{asset('public/datatables/js/jquery.dataTables.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('#date_time_picker1').datetimepicker({
+
+        //DataTables Example
+        //$('#date_time_picker1').datetimepicker({
             
-        });
+        //});
+
+        //$('#datetimepicker4').datetimepicker({
+          //  pickTime: false
+        //});
         $("#select_lang").change(function(){
             $lang_id = $("#select_lang").find(":selected").val();
             $.ajax({
@@ -125,6 +118,11 @@
                     type: "GET",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result){
+                        //console.log(result);
+                        //return false;
+                        location.reload();
                     }
             });
         });
@@ -134,6 +132,22 @@
             type: "GET", 
             success: function(result){
                 $("#department_id").html(result);
+            }
+        });
+        //Get Options for DOctors 
+        $.ajax({
+            url: "getDoctorsDd",
+            type: "GET", 
+            success: function(result){
+                $("#doctor_id").html(result);
+            }
+        });
+
+        $.ajax({
+            url: "getDoctorsForBooking",
+            type: "GET", 
+            success: function(result){
+                $("#showing_doctors").html(result);
             }
         });
 
@@ -158,6 +172,6 @@
                     }
             });
              
-        })
+        });
     });
 </script>

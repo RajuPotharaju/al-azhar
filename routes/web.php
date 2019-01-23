@@ -10,11 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//{lang_id?}
-//$lang_id = ''
+//use Symfony\Component\HttpFoundation\Session\Session;
+//use Illuminate\Contracts\Session\Session;
+//use Session;
 
-//logout.
+//Home Page
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
+
 
 Route::get('/', function (){
 	if(isset(\Auth()->user()->id)&&(\Auth()->user()->id) > 0){
@@ -24,14 +32,31 @@ Route::get('/', function (){
 });
 
 Auth::routes();
+//set session language:
+//Route::get('/ar', 'JobsController@index')->name('vacancies');
+Route::get('/en', function () {
+    $lang = 'en';
+    \Session::put('locale', $lang);
+    return 1;
+});
+Route::get('/ar', function () {
+    $lang = 'ar';
+    \Session::put('locale', $lang);
+    return 1;
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 //Jobs
 Route::get('/vacancies', 'JobsController@index')->name('vacancies');
 Route::get('/jobs', 'JobsController@viewJobs')->name('vewsJobs');
 Route::get('/getJobs', 'JobsController@getJobs')->name('getJobs');
 Route::get('/getDepartments', 'DepartmentsController@getDepartments')->name('getDepts');
+Route::get('/getDeptBasedJob/{dept_id}', 'JobsController@getDeptBasedJob')->name('getDeptBasedJob');
+
+
+//job-applications
+Route::get('/applications/view/{id}', 'JobsController@viewJobApplication')->name('viewApplication');
+Route::get('/applications/delete/{id}', 'JobsController@deleteJobApplication')->name('deleteApplication');
 
 //Jobs-Admin
 Route::get('/applcations', 'JobsController@showJobApplications')->name('applications');
@@ -39,7 +64,38 @@ Route::get('/postJob', 'JobsController@postJob')->name('postJob');
 Route::post('/savepostedjob', 'JobsController@savePostedJob')->name('savePostedJob');
 Route::get('/viewJobs', 'JobsController@viewAllJobs')->name('viewAllJobs');
 
+Route::get('/showPostedJobs', 'JobsController@getPostedJobs')->name('getPostedJobs');
+Route::get('/showAllJobs', 'JobsController@getAllJobs')->name('getAllJobs');
+
+//Admin-Doc
+//getDoctors\
+//Route::get('/doctors', 'DoctorsController@index')->name('doctors')->middleware('auth');
+//Route::get('/getDoctors', 'DoctorsController@getDoctors')->name('getDoctors');
+//Route::get('/addDoctors', 'DoctorsController@addDoctor')->name('addDoctors');
+//Route::post('/storeDoctors', 'DoctorsController@storeDoctor')->name('storeDoctor');
+//Route::get('/getDoctorsDd', 'DoctorsController@getDoctorsDd')->name('getDoctorsDd');
+//Edit DOctors Details
+Route::get('/doctors/edit/{id}', 'DoctorsController@editDoctor')->name('editDoctors');
+Route::post('/updateDoctor/{id}', 'DoctorsController@updateDoctor')->name('updateDoctor');
+Route::get('doctors/delete/{id}', 'DoctorsController@deleteDoctor')->name('deleteDoctor');
+
+Route::get('getDoctorsForBooking', 'DoctorsController@getDoctorsForBooking')->name('getDocsForBooking');
+Route::get('/getDoctorsDd', 'DoctorsController@getDoctorsDd')->name('getDoctorsDd');
+
+
+
+
+
+Route::get('/getDepartments', 'DepartmentsController@getDepartments')->name('getDepts');
+Route::get('/departments/edit/{id}', 'DepartmentsController@edit')->name('editDepartment');
+Route::post('/departments/update/{id}', 'DepartmentsController@update')->name('updateDepartment');
+Route::get('/departments/delete/{id}', 'DepartmentsController@delete')->name('deleteDepartment');
+
+
 //Appointments-Admin
+Route::get('/bookAnAppointment/{id}', 'AppointmentsController@bookAppointment')->name('BookAppointments');
+Route::get('/showAppointments', 'AppointmentsController@showAppointments')->name('showAppointments');
+Route::get('/getAppointments', 'AppointmentsController@getAppointments')->name('getAppointments');
 Route::post('/storeappointments', 'AppointmentsController@store')->name('storeAppointment');
 
 
@@ -50,36 +106,132 @@ Route::get('/showJobDetails/{job_id}', 'JobsController@showJobDetails')->name('s
 Route::get('/apply/{job_id}', 'JobsController@applyForThisJob')->name('applyForThisJob');
 Route::post('/saveJobApplication/{job_id?}', 'JobsController@saveJobApplication')->name('saveJobApplication');
 
+Route::get('/jobs/edit/{job_id}', 'JobsController@editJob')->name('editJob');
+Route::post('/jobs/update/{job_id}', 'JobsController@updateJob')->name('updateJob');
+Route::get('/jobs/delete/{job_id}', 'JobsController@deleteJob')->name('deleteJob');
+Route::get('/downloadResume/{attachment_id}', 'JobsController@downloadResume')->name('downloadResume');
+Route::get('/jobapplication/{app_id}', 'JobsController@deleteJobApplication')->name('downloadResume');
+
+
+
+
+
 //contactus
-//contact-us.php
 Route::get('/contactUs', 'ContactUsController@showContactUsForm')->name('showContactUsForm');
 Route::post('/saveContactUsDetails', 'ContactUsController@saveContactUsDetails')->name('saveContactedDetails');
+Route::get('/contacted', 'ContactUsController@index')->name('contacts');
+Route::get('getContactedUsers','ContactUsController@getContactedUsers')->name('getContacts');
+
+
+//packages-routes
+Route::get('packages','PackagesController@index')->name('packages');
+Route::get('getPackages','PackagesController@getPackages')->name('getPackages');
+Route::get('packages/add','PackagesController@add')->name('addPackage');
+Route::post('packages/store','PackagesController@store')->name('storePackages');
+Route::get('packages/edit/{id}','PackagesController@edit')->name('editPackages');
+Route::post('packages/update/{id}','PackagesController@update')->name('updatePackages');
+Route::get('packages/delete/{id}','PackagesController@delete')->name('updatePackages');
+Route::get('packages/view/{id}','PackagesController@view')->name('viewPackages');
+
+//shifttimings
+Route::get('getDoctorTimings','DoctorsController@getDoctorTimings')->name('getDoctorTimings');
+
+//About-USController
+Route::get('aboutus-profile/addoredit','AboutUsController@addProfile')->name('addoreditProfile');
+Route::post('aboutus-profile/store','AboutUsController@storeProfile')->name('storeProfile');
+
+Route::get('aboutus-message/chairman','AboutUsController@addChairManMessages')->name('addChairManMessages');
+
+Route::post('aboutus-message/store','AboutUsController@storeMessages')->name('storeMessages');
+
+
+Route::get('aboutus-message/ceo','AboutUsController@addCeoMessages')->name('addCeoMessages');
+Route::get('aboutus-message/gm','AboutUsController@addGmMessages')->name('addGmMessages');
+Route::get('aboutus-message/Dgm','AboutUsController@addDgmMessages')->name('addDgmMessages');
+Route::get('aboutus-message/Tomgm','AboutUsController@addTomDirMessages')->name('addTomDirMessages');
+Route::get('aboutus-message/MDid','AboutUsController@addMedDirMessages')->name('addMedDirMessages');
+Route::get('aboutus-message/misandvis','AboutUsController@misandvis')->name('misandvis');
+//Route::get('aboutus-message/management','AboutUsController@addManagement')->name('Management');
+
+//Middleware Goup.
+
+Route::middleware(['auth'])->group(function () {
+    //departments
+    Route::get('/departments', 'DepartmentsController@index')->name('departments');
+    Route::get('/getAllDepartments', 'DepartmentsController@getAllDepartments')->name('getAllDepartments');
+    Route::get('/addDepartment', 'DepartmentsController@addDepartment')->name('addDepartment');
+    Route::post('/storeDepartment', 'DepartmentsController@storeDepartment')->name('storeDepartment');
+
+    Route::get('/doctors', 'DoctorsController@index')->name('doctors')->middleware('auth');
+    Route::get('/getDoctors', 'DoctorsController@getDoctors')->name('getDoctors');
+    Route::get('/addDoctors', 'DoctorsController@addDoctor')->name('addDoctors');
+    Route::post('/storeDoctors', 'DoctorsController@storeDoctor')->name('storeDoctor');
+    
+});
+
+
 //AboutUsURls
 Route::group(['prefix'=>'aboutUs'], function()
 {
+    
     Route::get('profile', function()
-    {	
-        return view('aboutus.profile');
+    {  
+        $language = App::getLocale();
+        $data = \Alazhar\AboutUsProfile::find(1);
+        $saving_files = \Alazhar\Attachments::find($data->attachment_id);
+        return view('aboutus.profile')->with('data',$data)->with('language',$language)->with('attachment',$saving_files->attachment);
     })->name('profile');
     Route::get('chairmanmessage',function () {
-    	return view('aboutus.chairman');
+        $language = App::getLocale();
+        $role_id = 3;
+        $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
+
+        $saving_files = \Alazhar\Attachments::find($data[0]['attachment_id']);
+        return view('aboutus.chairman')->with('data',$data[0])->with('language',$language)->with('attachment',$saving_files->attachment);
 	})->name('chairman');
 	Route::get('ceomessage',function () {
-    	return view('aboutus.ceo');
+    	$language = App::getLocale();
+        $role_id = 2;
+        $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
+        $saving_files = \Alazhar\Attachments::find($data[0]['attachment_id']);
+        return view('aboutus.chairman')->with('data',$data[0])->with('language',$language)->with('attachment',$saving_files->attachment);
 	})->name('ceo');
 	Route::get('gmmessage',function () {
-    	return view('aboutus.gm');
+        $language = App::getLocale();
+        $role_id = 5;
+        $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
+        if(!empty($data[0]['id'])){
+            $data = \Alazhar\AboutUsMessages::find($data[0]['id']);    
+        }
+        $saving_files = \Alazhar\Attachments::find($data->attachment_id);
+        return view('aboutus.chairman')->with('data',$data)->with('language',$language)->with('attachment',$saving_files->attachment);
 	})->name('gm');
 	Route::get('deputy',function () {
-    	return view('aboutus.deputy');
+        $language = App::getLocale();
+        $role_id = 4;
+        $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
+        $saving_files = \Alazhar\Attachments::find($data[0]['attachment_id']);
+        return view('aboutus.chairman')->with('data',$data[0])->with('language',$language)->with('attachment',$saving_files->attachment);
 	})->name('deputy');
 	Route::get('tqm-director',function () {
-    	return view('aboutus.tqm-director');
+        $language = App::getLocale();
+        $role_id = 8;
+        $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
+        $saving_files = \Alazhar\Attachments::find($data[0]['attachment_id']);
+        return view('aboutus.chairman')->with('data',$data[0])->with('language',$language)->with('attachment',$saving_files->attachment);
 	})->name('tqm-director');
 	Route::get('medical-director',function () {
-    	return view('aboutus.medical-director');
+        $language = App::getLocale();
+        $role_id = 6;
+        $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
+        $saving_files = \Alazhar\Attachments::find($data[0]['attachment_id']);
+        return view('aboutus.chairman')->with('data',$data[0])->with('language',$language)->with('attachment',$saving_files->attachment);
 	})->name('medical-director');
-	Route::get('management',function () {
+	Route::get('management',function (){
+        $profile_images = \Alazhar\AboutUsMessages::orderBy('attachment_id')->get();
+        echo "<pre>";
+        print_r($profile_images);die;
+        
     	return view('aboutus.management');
 	})->name('management');
 	Route::get('mission-and-vision',function () {
@@ -110,13 +262,14 @@ Route::group(['prefix'=>'facilities'], function()
     	return view('facilities.parking');
 	})->name('parking');
 });
-Route::get('packages', function(){	
-        return view('packages');
-    })->name('packages');
+Route::get('packages_view', function(){	
+        return view('packages_front_view');
+    })->name('packages_view');
 
 Route::get('appointment', function()
-    {	
-        return view('appointment');
+    {
+        $language = App::getLocale();	
+        return view('appointment')->with('language',$language);
     })->name('appointment');
 Route::get('research', function()
     {	
@@ -151,3 +304,24 @@ Route::get('news', function() {
 Route::get('news-details', function() {
     return view('news-details');
 }) -> name('news-details');
+
+
+
+Route::get('/getJobApplications', 'JobsController@getJobApplications')->name('getJobApplications');
+
+//User Profile Related
+Route::get('changePassword','UserController@changePassword')->name('changePassword');
+Route::post('saveChangedPassword','UserController@saveChangedPassword')->name('saveChangedPassword');
+Route::get('changeProfileDetails','UserController@changeProfileDetails')->name('changeProfileDetails');
+Route::post('saveProfileDetails','UserController@saveProfileDetail')->name('saveProfileDetail');
+
+
+
+Route::get('test', function() {
+    
+    //dd(env('MAIL_HOST'));
+    \Mail::send('mail', [], function ($message) {
+        $message->to('aftabkhan.india@gmail.com', 'Hello AlAzher Email Testing.')->subject('Welcome!');
+    });
+    echo 123;die;
+});

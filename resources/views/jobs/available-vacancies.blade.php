@@ -42,8 +42,8 @@
                         <div class="section-overlay"></div>
                         <div class="row">
                             <div class="col-12">
-                                <h1 class="section-title">Available Vacancies</h1>
-                                <h4 class="section-para">Careers</h4> </div>
+                                <h1 class="section-title">@lang('labels.available_vacancies')</h1>
+                                <h4 class="section-para">@lang('labels.career')</h4> </div>
                         </div>
                     </div>
                 </div>
@@ -54,9 +54,9 @@
                         <div class="col-12">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Careers</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Available Vacancies</li>
+                                    <li class="breadcrumb-item"><a href="#">@lang('labels.home')</a></li>
+                                    <li class="breadcrumb-item"><a href="#">@lang('labels.career')</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">@lang('labels.available_vacancies')</li>
                                 </ol>
                             </nav>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-head">
-                                <h2>Available Vacancies</h2> </div>
+                                <h2>@lang('labels.available_vacancies')</h2> </div>
                         </div>
                     </div>
                     <div class="row pt-3">
@@ -77,10 +77,10 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="media bg-deep p-4 mb-2">
                                         <form action="">
-                                           <h5 class="h5">Job Search</h5>
+                                           <h5 class="h5">@lang('labels.job_search')</h5>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
-                                                    <input type="text" class="form-control" id = "job_id" placeholder="Keywords..."> 
+                                                    <input type="text" class="form-control" id = "job_id" placeholder="@lang('labels.key_words')"> 
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -90,26 +90,52 @@
                                                 </div>
                                                 <div class="form-group col-12">
                                                     <select name="" id="experience_id" class="form-control">
-                                                        <option selected disabled>Experience</option>
+                                                        <option selected disabled>@lang('labels.experience')</option>
                                                         <option value="0">0 - 3</option>
                                                         <option value="0">3 - 5</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="btn btn-green-outline btn-sm" id = "jobs_search_button">Search</div>
+                                            <div class="btn btn-green-outline btn-sm" id = "jobs_search_button">@lang('labels.search')</div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8" id = "jobs_search_result">
-                            
                         </div>
+                        <h1 class="load-more">Load More</h1>
                     </div>
                 </div>
             </section>
             <!-- end main-content -->
+            <script type="text/javascript" charset="utf8" src="{{asset('public/js/loadmore.js')}}"></script>
             @include('layouts.footer')
+            <script>
+               $(document).ready(function() {
+                   $.ajax({
+                       url: "showAllJobs",
+                        type: "GET", 
+                        success: function(result){
+                           $("#jobs_search_result").html(result);
+                        }
+                    });
+
+                   $('.load-more').loadmore('', {
+                        loadingText : 'Loading',
+                        filterResult: '.list > *',
+                        useExistingButton: '.button',
+                        useOffset: true,
+                        rowsPerPage: 5,
+                        baseOffset: -1,
+                        itemSelector: 'ul .item',
+                        pageParam : false,
+                        pageStartParam: 'foo'
+                    });
+
+        
+                });
+            </script>
 </body>
 
 </html>

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login &mdash; Stisla</title>
+  <title>{{ config('app.name', 'Al Azhar Hospital - Riyadh, KSA') }}</title>
 
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/imgs/favicon.ico')}}">
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{asset('public/dist/modules/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('public/dist/modules/fontawesome/css/all.min.css')}}">
@@ -69,6 +70,11 @@
                         <button type="submit" class="btn btn-green btn-lg btn-block" tabindex="4">
                             Login
                         </button>
+                  </div>
+                  <div class="form-group">
+                        <a href="{{url('/')}}"class="btn btn-blue btn-lg btn-block" tabindex="4">
+                            Home
+                        </a>
                   </div>
                 </form>
               </div>

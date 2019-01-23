@@ -1,7 +1,7 @@
 <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand sticky-top">
-                        <a href="dashboard-index.html"><img src="{{asset('public/dist/img/logo.png')}}" alt="" class="img-fluid"></a>
+                        <a href="{{url('/')}}"><img src="{{asset('public/dist/img/logo.png')}}" alt="" class="img-fluid"></a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm sticky-top">
                         <a href="dashboard-index.html"><img src="{{asset('public/dist/img/icon-logo.png')}}" alt="" class="img-fluid"></a>
@@ -12,15 +12,15 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>About Us</span></a>
                             <ul class="dropdown-menu" aria-labelledby="aboutus"> 
-                                <li><a class="nav-link" href="#">Profile</a> </li>
-                                <li><a class="nav-link" href="#">Chairman Message</a> </li>
-                                <li><a class="nav-link" href="#">CEO Message</a> </li>
-                                <li><a class="nav-link" href="#">GM Message</a> </li>
-                                <li><a class="nav-link" href="#">Deputy GM Message</a> </li>
-                                <li><a class="nav-link" href="#">TQM Director Message</a> </li>
-                                <li><a class="nav-link" href="#">Medical Director Message</a> </li>
-                                <li><a class="nav-link" href="#">Management</a> </li>
-                                <li><a class="nav-link" href="#">Mission &amp; Vision</a> </li>
+                                <li><a class="nav-link" href="{{route('addoreditProfile')}}">Profile</a> </li>
+                                <li><a class="nav-link" href="{{route('addChairManMessages')}}">Chairman Message</a> </li>
+                                <li><a class="nav-link" href="{{route('addCeoMessages')}}">CEO Message</a> </li>
+                                <li><a class="nav-link" href="{{route('addGmMessages')}}">GM Message</a> </li>
+                                <li><a class="nav-link" href="{{route('addDgmMessages')}}">Deputy GM Message</a> </li>
+                                <li><a class="nav-link" href="{{route('addTomDirMessages')}}">TQM Director Message</a> </li>
+                                <li><a class="nav-link" href="{{route('addMedDirMessages')}}">Medical Director Message</a> </li>
+                                <!--<li><a class="nav-link"">Management</a> </li>-->
+                                <li><a class="nav-link" href="{{route('misandvis')}}">Mission &amp; Vision</a> </li>
                             </ul>
                         </li>
                         <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Our Specialities</span></a></li>
@@ -33,17 +33,21 @@
                                 <li><a class="nav-link" href="#">Parcking Facilities</a> </li>
                             </ul>
                         </li>
-                        <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Appointments</span></a></li>
-                        <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Packages</span></a></li>
+                        <li><a class="nav-link" href="{{route('showAppointments')}}"><i class="fas fa-fire"></i> <span>Appointments</span></a></li>
+                        <li><a class="nav-link" href="{{route('packages')}}"><i class="fas fa-fire"></i> <span>Packages</span></a></li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Careers</span></a>
                             <ul class="dropdown-menu" aria-labelledby="aboutus"> 
-                                <li><a class="nav-link" href="{{route('postJob')}}">Post Job</a> </li>
                                 <li><a class="nav-link" href="{{route('viewAllJobs')}}">View Job</a> </li>
                                 <li><a class="nav-link" href="{{route('applications')}}">Applied Resumes</a> </li>
                             </ul>
                         </li>
-                        
+                        <li class = "dropdown">
+                            <a class="nav-link" href="{{route('doctors')}}"><i class="fas fa-fire"></i> <span>Doctors</span></a>
+                        </li>
+                        <li class = "dropdown">
+                            <a class="nav-link" href="{{route('departments')}}"><i class="fas fa-fire"></i> <span>Departments</span></a>    
+                        </li>
                         <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Research</span></a></li>
                         
                         <li class="dropdown">
@@ -73,7 +77,7 @@
                         <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Social URLs</span></a></li>     
                         <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>FAQs</span></a></li>                        
                         <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Knowledge Base</span></a></li>
-                        <li><a class="nav-link" href="#"><i class="fas fa-fire"></i> <span>Contact Us</span></a></li>
+                        <li><a class="nav-link" href="{{route('contacts')}}"><i class="fas fa-fire"></i> <span>Contacted Users</span></a></li>
                     </ul>
                 </aside>
 </div>

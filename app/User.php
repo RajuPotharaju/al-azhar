@@ -4,6 +4,7 @@ namespace Alazhar;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -14,8 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+
+    protected $dates = ['deleted_at'];
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id','department_id','mobile','location','profile_image_id','timings'
     ];
 
     /**
@@ -24,6 +28,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
+
+    public static function getDoctors(){
+        $result = User::select('users.id','users.name','users.email','users.mobile','departments.name_en AS dept_name','attachments.attachment','DoctorTimings.timing')
+                        ->leftJoin('departments', 'users.department_id', '=', 'departments.id')
+                        ->leftjoin('attachments','users.profile_image_id','=','attachments.id')
+                        ->leftjoin('DoctorTimings','users.timings','=','DoctorTimings.id')
+                        ->where('role_id',2);
+        return $result;
+    }
 }

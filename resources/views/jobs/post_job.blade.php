@@ -17,29 +17,29 @@
                         <h4>Job Posting Form</h4>
                     </div>
                     <div class="card-body">
-                        <form class="w-100" action = "{{url('savepostedjob')}}" method = "post"files='false' enctype="multipart/form-data">
+                        <form class="w-100" action = "{{url('savepostedjob')}}" method = "post"files='false' enctype="multipart/form-data" id = "posting_vacancy_form">
                             @csrf
                             <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content Post for</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="arabic" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="arabic">Arabic</label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="English" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="English">English</label>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Job Title (English)</label>
                                 <div class="col-sm-12 col-md-7">
-                                <input name = "job_title"type="text" class="form-control">
-                                    @if(!empty($errors->has('job_title')))
+                                <input name = "name_en"type="text" class="form-control">
+                                    @if(!empty($errors->has('name_en')))
                                         <div class="row col-lg-12">
                                             <div class="alert alert-danger">
-                                                <span>{{ $errors->first('job_title') }}</span>
+                                                <span>{{ $errors->first('name_en') }}</span>
+                                            </div>
+                                        </div>
+                                    @endif 
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Job Title (Arabic)</label>
+                                <div class="col-sm-12 col-md-7">
+                                <input name = "name_ar"type="text" class="form-control">
+                                    @if(!empty($errors->has('name_ar')))
+                                        <div class="row col-lg-12">
+                                            <div class="alert alert-danger">
+                                                <span>{{ $errors->first('name_ar') }}</span>
                                             </div>
                                         </div>
                                     @endif 
@@ -60,13 +60,26 @@
                                   </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content (English)</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea name = "job_desc" class="summernote"></textarea>
-                                    @if(!empty($errors->has('job_desc')))
+                                    <textarea name = "job_desc_en" class="summernote"></textarea>
+                                    @if(!empty($errors->has('job_desc_en')))
                                         <div class="row col-lg-12">
                                             <div class="alert alert-danger">
-                                                <span>{{ $errors->first('job_desc') }}</span>
+                                                <span>{{ $errors->first('job_desc_en') }}</span>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content (Arabic)</label>
+                                <div class="col-sm-12 col-md-7">
+                                    <textarea name = "job_desc_ar" class="summernote"></textarea>
+                                    @if(!empty($errors->has('job_desc_ar')))
+                                        <div class="row col-lg-12">
+                                            <div class="alert alert-danger">
+                                                <span>{{ $errors->first('job_desc_ar') }}</span>
                                             </div>
                                         </div>
                                     @endif
@@ -78,6 +91,12 @@
                                     <button class="btn btn-primary">Publish</button>
                                 </div>
                             </div>
+                        <!--
+                            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+                            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+                            <script type="text/javascript" src="{{ asset('vendor/proengsoft/laravel-jsvalidation/public/js/jsvalidation.js')}}"></script>
+                            {!! JsValidator::formRequest('\Alazhar\Http\Requests\SaveJobPosts', '#posting_vacancy_form') !!}
+                        -->
                         </form>
                     </div>
                     <div class="card-footer bg-whitesmoke">

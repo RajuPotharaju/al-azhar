@@ -18,9 +18,10 @@
                     <li class="list-inline-item"><a href="https://www.facebook.com"><img src="{{asset('public/imgs/logo-linkedin.svg')}}" alt="" height="22"></a></li>
                     <li class="list-inline-item"><a href="https://www.facebook.com"><img src="{{asset('public/imgs/logo-youtube.svg')}}" alt="" height="22"></a></li>
                     <select name="reason" id="select_lang">
-                        <option >Chose language</option>
+                        <option >@lang('labels.chose_lang')</option>
                         <option value="en">English</option>
-                        <option value="ar">Arabic</option>
+                        <!--@lang('labels.English')-->
+                        <option value="ar">@lang('labels.Arabic')</option>
                     </select>
                 </ul>
             </div>

@@ -27,7 +27,7 @@ class SaveContactUsDetails extends FormRequest
             'full_name' => 'required',
             'email'=>'required|email|unique:users',
             'mobile'=>'required|numeric|digits:10',
-            'reason'=>'required|min:3|max:1000'
+            'reason'=>'required|min:1'
         ];
     }
 }

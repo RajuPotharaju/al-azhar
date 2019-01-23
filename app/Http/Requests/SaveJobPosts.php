@@ -24,9 +24,12 @@ class SaveJobPosts extends FormRequest
     public function rules()
     {
         return [
-            'job_title' => 'required',
+            'name_en' => 'required',
+            'name_ar' => 'required',
             'category'=>'required|numeric|min:1',
-            'job_desc'=>'required|min:3|max:1000',
+            //'department_id'=>'required|numeric|min:1',
+            'job_desc_en'=>'required|min:3|max:1000', 
+            'job_desc_ar'=>'required|min:3|max:1000',
 
         ];
     }

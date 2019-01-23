@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $user_name = Auth()->user()->name;
-        return view('home')->with('user_name',$user_name);
+        $user_name = Auth()->user()->name;        
+        $url = 'getPackages';
+        return view('home')->with('user_name',$user_name)->with('url',$url);
     }
 }

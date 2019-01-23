@@ -23,7 +23,17 @@ class SaveAppointments extends FormRequest
      */
     public function rules()
     {
-        return [
+        if(isset($this->id)){
+                return [
+                    'full_name' => 'required',
+                    'email'=>'required|email|unique:users',
+                    'mobile'=>'required|numeric|digits:10',
+                    'appointment_date'=>'required',
+                    'appointment_reason'=>'required|min:3|max:1000'
+                ];
+
+        }else{
+            return [
                     'full_name' => 'required',
                     'email'=>'required|email|unique:users',
                     'mobile'=>'required|numeric|digits:10',
@@ -32,5 +42,7 @@ class SaveAppointments extends FormRequest
                     'department_id'=>'numeric',
                     'appointment_reason'=>'required|min:3|max:1000'
         ];
+        }
+        
     }
 }
