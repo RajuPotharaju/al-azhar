@@ -222,7 +222,7 @@ Route::group(['prefix'=>'aboutUs'], function()
 	})->name('tqm-director');
 	Route::get('medical-director',function () {
         $language = App::getLocale();
-        $role_id = 6;
+        $role_id = 10;
         $data = \Alazhar\AboutUsMessages::where('role_id',$role_id)->get();
         $saving_files = \Alazhar\Attachments::find($data[0]['attachment_id']);
         return view('aboutus.chairman')->with('data',$data[0])->with('language',$language)->with('attachment',$saving_files->attachment);
