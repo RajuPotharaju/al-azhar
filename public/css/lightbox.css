@@ -1,0 +1,38 @@
+ /* Custom Modal */
+    .custom-modal .modal-dialog {
+      max-width: 800px;
+      margin: 30px auto;
+  }
+
+
+
+  .custom-modal .modal-body {
+  position:relative;
+  padding:0px;
+}
+.custom-modal .close, 
+.custom-modal .close:not(:disabled):not(.disabled):hover, 
+.custom-modal .close:not(:disabled):not(.disabled):focus {
+  position:absolute;
+  right:-30px;
+  top:0;
+  z-index:999;
+  font-size:2rem;
+  font-weight: normal;
+  color:#fff;
+  opacity:1;
+}
+
+.custom-modal .modal-body .img-fluid {
+  max-width: 100% !important;
+  height: auto !important;
+}
+    
+
+.custom-modal .modal-content {
+  border: 0;
+}
+
+.custom-modal .img-thumbnail {
+  width: 100%;
+}
