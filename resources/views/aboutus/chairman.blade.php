@@ -44,8 +44,9 @@
                 <div class="section-overlay"></div>
                 <div class="row">
                     <div class="col-12">
-                        <h1 class="section-title">Chairman Message</h1>
-                        <h4 class="section-para">About Us</h4>
+                        <?php $page_title = 'page_title_'.$language ?>
+                        <h1 class="section-title">{{$data[$page_title]}}</h1>
+                        <h4 class="section-para">@lang('labels.about_us')</h4>
                     </div>
                 </div>
             </div>
@@ -58,7 +59,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">About Us</a></li>
+                            <li class="breadcrumb-item"><a href="#">@lang('labels.about_us')</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Chairman Message</li>
                         </ol>
                     </nav>
@@ -72,25 +73,26 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="page-head">
-                        <h2>Chairman Message</h2>
+                        
+                        <h2>{{$data->$page_title}}</h2>
                     </div>
                     <div class="para pt-4">
-                        <p>Our Hospital’s vision is to be Kingdom&#39;s highest quality health science centre, providing the best medicine and the best patient experience. Your role in realizing this vision and being part of a team that is committed the very best in patient care, research and education is deeply valued.</p>
-                        
-                        <p>Our focus on family and patient-centered care means that we stress the importance of patient service from each and every member of staff. Every staff member, whether you are a front-line clinician, researcher or administrator, has a vital role to play in ensuring that every patient receives the very best care.</p>
-                        
-                        <p>We will make every effort to support you and to create an environment in which you can achieve your highest level of excellence.</p>
-                        
-                        <p>Al Azhar Hospital is a great hospital with a great future and we are just delighted all of us are working for its improvement.</p>                                                
+                        <?php $message = 'message_'.$language ?>
+                        <?php echo $data->$message ?>
                     </div>
                 </div>
                 <div class="col-lg-4 ml-auto">
                     <div class="page-image mt-5">
-                        <img src="{{asset('public/imgs/chairman.jpg')}}" alt="" class="img-fluid">
+                        <?php 
+                                $attachment_link = 'public/imgs/profiles/'.$attachment; 
+                        ?>
+                        <img src="{{asset($attachment_link)}}" alt="" class="img-fluid">
                     </div>                    
                     <div class="message-author">
-                        <h3 class="text-green">Mr. Saad Al Shamrany</h3>
-                        <h4>Chairman</h4>
+                        <?php $name = 'name_'.$language ?>              
+                        <h3 class="text-green">{{$data->$name}}</h3>
+                        <?php $profile = 'profile_'.$language ?>
+                        <h4>{{$data->$profile}}</h4>
                     </div>
                 </div>
             </div>

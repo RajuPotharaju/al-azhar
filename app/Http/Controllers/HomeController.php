@@ -3,6 +3,7 @@
 namespace Alazhar\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,9 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $user_name = Auth()->user()->name;        
+        $url = 'getPackages';
+        return view('home')->with('user_name',$user_name)->with('url',$url);
     }
 }

@@ -13,7 +13,7 @@ class SaveContactUsDetails extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,13 +25,9 @@ class SaveContactUsDetails extends FormRequest
     {
         return [
             'full_name' => 'required',
-            'email'=>'required|email',
-            'date_of_birth'=>'required',
-            'mobile'=>'required',
-            'qualification'=>'required',
-            'location'=>'required',
-            'resume_file'=>'required',
-            'resume_content'=>'required'
+            'email'=>'required|email|unique:users',
+            'mobile'=>'required|numeric|digits:10',
+            'reason'=>'required|min:1'
         ];
     }
 }

@@ -33,8 +33,9 @@
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Cairo:300,400,700|Tajawal:300,400,700&amp;subset=arabic" rel="stylesheet">
         <link rel="stylesheet" href="{{asset('public/fonts/flaticon/font/flaticon.css')}}">
 
-        <!-- Laravel Javascript Validation -->
+        <!-- Laravel Javascript Validation 
         <script type="text/javascript" src="{{ asset('public/js/jsvalidation.js')}}"></script>
+        -->
 <body>
         @include('layouts.header')
         @include('layouts.nav')
@@ -45,8 +46,8 @@
                         <div class="section-overlay"></div>
                         <div class="row">
                             <div class="col-12">
-                                <h1 class="section-title">Apply Job</h1>
-                                <h4 class="section-para">Careers</h4> </div>
+                                <h1 class="section-title">@lang('labels.apply_job')</h1>
+                                <h4 class="section-para">@lang('labels.catact_us')</h4> </div>
                         </div>
                     </div>
                 </div>
@@ -57,9 +58,9 @@
                         <div class="col-12">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Careers</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Apply Job</li>
+                                    <li class="breadcrumb-item"><a href="#">@lang('labels.home')</a></li>
+                                    <li class="breadcrumb-item"><a href="#">@lang('labels.career')</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">@lang('labels.apply_job')</li>
                                 </ol>
                             </nav>
                         </div>
@@ -71,10 +72,15 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-head">
-                                <h2>Apply Job</h2> 
+                                <h2>@lang('labels.apply_job')</h2> 
                             </div>
                         </div>
                     </div>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <div class="row pt-3">
                         <div class="col-md-12">  
                         <div class="media bg-deep p-4 mb-2">
@@ -84,37 +90,46 @@
                                     <form  class="w-100" action = "{{url('/saveJobApplication')}}" method = "post" files='true' enctype="multipart/form-data">
                                 @endif
                                 {{ csrf_field() }}
+
+                                <h2>{{$job_name or ' '}}</h2>
                                 <h5 class="h5">PLEASE FILL IN THESE DETAILS</h5>
                                 @if(!isset($job_id))
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <select name="" id="" class="form-control">
-                                                <option selected disabled>Select Departments</option>
-                                                <option value="0">Admin</option>
-                                                <option value="0">Allied Health</option>
-                                                <option value="0">Nursing</option>
-                                                <option value="0">Physicians</option>
+                                            <select name="department_id" id="department_id" class="form-control">
                                             </select>
+                                            @if(!empty($errors->has('department_id')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('department_id') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <select name="" id="" class="form-control">
-                                                <option selected disabled>Open Positions</option>
-                                                <option value="0">Executive</option>
-                                                <option value="0">Pharmasist</option>
+                                            <select name="position_id" id="position_id" class="form-control">
                                             </select>
+                                            @if(!empty($errors->has('position_id')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('position_id') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <select name="" id="" class="form-control">
-                                                <option selected disabled>Experience</option>
-                                                <option value="0">0 - 3</option>
-                                                <option value="0">3 - 5</option>
+                                            <select name="car_exp" id="" class="form-control">
+                                                <option selected disabled>@lang('labels.experience')</option>
+                                                <option value="1">0 - 3</option>
+                                                <option value="2">3 - 5</option>
+                                                <option value="3">5+</option>
                                             </select>
                                         </div>
                                     </div>
                                 @endif
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control" name = "full_name" placeholder="Full Name">
+                                        <input type="text" class="form-control" name = "full_name" placeholder="@lang('labels.enter_name')Full Name">
                                         @if(!empty($errors->has('full_name')))
                                             <div class="row col-lg-12">
                                                 <div class="alert alert-danger">
@@ -124,7 +139,7 @@
                                         @endif 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" name = "email" class="form-control" placeholder="Enter Valid Email Address">
+                                        <input type="text" name = "email" class="form-control" placeholder="@lang('labels.enter_email')">
                                         @if(!empty($errors->has('email')))
                                             <div class="row col-lg-12">
                                                 <div class="alert alert-danger">
@@ -146,7 +161,7 @@
                                         @endif  
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="tel" name = "mobile" class="form-control" placeholder="Phone Number">
+                                        <input type="tel" name = "mobile" class="form-control" placeholder="@lang('labels.phone')">
                                         @if(!empty($errors->has('mobile')))
                                             <div class="row col-lg-12">
                                                 <div class="alert alert-danger">
@@ -158,7 +173,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" name = "qualification" class="form-control" placeholder="Qualification">
+                                        <input type="text" name = "qualification" class="form-control" placeholder="@lang('labels.qualification')">
                                         @if(!empty($errors->has('qualification')))
                                             <div class="row col-lg-12">
                                                 <div class="alert alert-danger">
@@ -168,7 +183,7 @@
                                         @endif 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="text" name = "location" class="form-control" placeholder="Current Location">
+                                        <input type="text" name = "location" class="form-control" placeholder="@lang('labels.location')">
                                         @if(!empty($errors->has('location')))
                                             <div class="row col-lg-12">
                                                 <div class="alert alert-danger">
@@ -192,7 +207,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-12">
-                                        <label for="">or Paste Here</label>
+                                        <label for="">@lang('labels.pastehere')</label>
                                         <textarea class="form-control" id="" cols="30" rows="10" name = "resume_content"></textarea>
                                         @if(!empty($errors->has('resume_content')))
                                             <div class="row col-lg-12">
@@ -203,7 +218,7 @@
                                         @endif 
                                     </div>
                                 </div>
-                                <input value = "Submit / Apply" type="submit" class="btn btn-green mr-2"/>
+                                <input value = "@lang('labels.submit/apply')" type="submit" class="btn btn-green mr-2"/>
                             </form>
                         </div>
                         </div>
@@ -212,6 +227,20 @@
             </section>
             <!-- end main-content -->
             @include('layouts.footer')
+            <script>
+                $(document).ready(function() {
+                    $("#department_id").change(function(){
+                        $department_id = $("#department_id").find(":selected").val();
+                            $.ajax({
+                                url: "/alazhar/getDeptBasedJob/"+$department_id,
+                                type: "GET",
+                                success: function(result){
+                                            $("#position_id").html(result);
+                                }
+                            });
+                        });
+                });
+            </script>
 </body>
 
 </html>

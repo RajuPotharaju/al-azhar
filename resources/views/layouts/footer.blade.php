@@ -35,7 +35,7 @@
                 <div class="row mt-4">
                     <div class="col-md-4">
                         <ul class="list-unstyled">
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="{{url('/')}}">Home</a></li>
                             <li><a href="#">Medical Specialist</a></li>
                             <li><a href="#">Research &amp; Development</a></li>
                             <li><a href="#">Medical Package</a></li>
@@ -62,10 +62,10 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-inline d-flex justify-content-md-between bottom mt-lg-2">                                
-                            <li class="list-inline-item"><a href="news-update.php">News &amp; Updates</a></li>
+                            <li class="list-inline-item"><a href="{{route('news')}}">News &amp; Updates</a></li>
                             <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="contact-us.php">Contact Us</a></li>
-                            <li class="list-inline-item"><a href="faqs.php">FAQs</a></li>
+                            <li class="list-inline-item"><a href="{{route('showContactUsForm')}}">Contact Us</a></li>
+                            <li class="list-inline-item"><a href="{{route('faqs')}}">FAQs</a></li>
                             <li class="list-inline-item"><a href="#">Sitemap</a></li>
                         </ul>
                     </div>
@@ -94,27 +94,60 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{asset('public/js/bootstrap.min.js')}}"></script>
-<!--<script src="{{asset('public/js/main.js')}}"></script>  
-<script src="{{asset('public/js/google-map-init.js')}}"></script>
-<script src="{{asset('public/js/jquery.min.js')}}"></script>
--->
 <script src="{{asset('public/js/bootstrap.min.js.map')}}"></script>
+
+
+<!--datatables-->
+    <link rel="stylesheet" type="text/css" href="{{asset('public/datatables/css/jquery.dataTables.css')}}">
+    <script type="text/javascript" charset="utf8" src="{{asset('public/datatables/js/jquery.dataTables.js')}}"></script>
 <script>
     $(document).ready(function() {
-        /*$.ajax({
-            url: "/getJobs",
-            type: "get", 
-            success: function(result){
-                $("#job_id").html(result);
-            }
-        }); */
 
+        //DataTables Example
+        //$('#date_time_picker1').datetimepicker({
+            
+        //});
+
+        //$('#datetimepicker4').datetimepicker({
+          //  pickTime: false
+        //});
+        $("#select_lang").change(function(){
+            $lang_id = $("#select_lang").find(":selected").val();
+            $.ajax({
+                    url: "/alazhar/"+$lang_id,
+                    type: "GET",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(result){
+                        //console.log(result);
+                        //return false;
+                        location.reload();
+                    }
+            });
+        });
         //Get Options For Depts
         $.ajax({
             url: "getDepartments",
             type: "GET", 
             success: function(result){
                 $("#department_id").html(result);
+            }
+        });
+        //Get Options for DOctors 
+        $.ajax({
+            url: "getDoctorsDd",
+            type: "GET", 
+            success: function(result){
+                $("#doctor_id").html(result);
+            }
+        });
+
+        $.ajax({
+            url: "getDoctorsForBooking",
+            type: "GET", 
+            success: function(result){
+                $("#showing_doctors").html(result);
             }
         });
 
@@ -139,6 +172,6 @@
                     }
             });
              
-        })
+        });
     });
 </script>

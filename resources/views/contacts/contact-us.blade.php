@@ -44,8 +44,8 @@
                         <div class="section-overlay"></div>
                         <div class="row">
                             <div class="col-12">
-                                <h1 class="section-title">How to reach us?</h1>
-                                <h4 class="section-para">Contact Us</h4> </div>
+                                <h1 class="section-title">@lang('labels.how_to_reach_us')</h1>
+                                <h4 class="section-para">@lang('labels.catact_us')</h4> </div>
                         </div>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                         <div class="col-12">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                                    <li class="breadcrumb-item"><a href="#">@lang('labels.home')</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">@lang('labels.catact_us')</li>
                                 </ol>
                             </nav>
                         </div>
@@ -69,11 +69,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-head">
-                                <h2>Contact Us</h2> 
+                                <h2>@lang('labels.catact_us')</h2> 
                             </div>
                         </div>
                     </div>
-                    
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <div class="row pt-3">
                         <div class="col-md-4">
                             <div class="row">
@@ -108,45 +113,76 @@
                         </div>
                         <div class="col-md-8">
                             <!-- Contact Form -->
-                            <form id="contact_form" name="contact_form" class="contact_form" action="" method="post" novalidate="novalidate">
+                            <form id="contact_form" name="contact_form" class="contact_form" action="{{route('saveContactedDetails')}}" method="post" novalidate="novalidate">
+                                {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="form_name">Name <small>*</small></label>
-                                            <input id="form_name" name="form_name" class="form-control" type="text" placeholder="Enter Name" required="" aria-required="true"> 
+                                            <label for="form_name">@lang('labels.name')<small>*</small></label>
+                                            <input id="form_name" name="full_name" class="form-control" type="text" placeholder="@lang('labels.enter_name')" required="" aria-required="true">
+                                            @if(!empty($errors->has('full_name')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('full_name') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="form_email">Email <small>*</small></label>
-                                            <input id="form_email" name="form_email" class="form-control required email" type="email" placeholder="Enter Email" aria-required="true"> </div>
+                                            <label for="form_email">@lang('labels.email') <small>*</small></label>
+                                            <input id="form_email" name="email" class="form-control required email" type="email" placeholder="@lang('labels.enter_email')" aria-required="true"> 
+                                            @if(!empty($errors->has('email')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('email') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="form_name">I have a... <small>*</small></label>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Enquiry</option>
-                                                <option value="">Suggestion</option>
-                                                <option value="">Complaint</option>
+                                            <label for="form_name">@lang('labels.ihavea')<small>*</small></label>
+                                            <select name="reason" id="" class="form-control">
+                                                <option value="1">Enquiry</option>
+                                                <option value="2">Suggestion</option>
+                                                <option value="3">Complaint</option>
                                             </select>
+                                            @if(!empty($errors->has('reason')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('reason') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="form_phone">Phone</label>
-                                            <input id="form_phone" name="form_phone" class="form-control" type="text" placeholder="Enter Phone"> </div>
+                                            <label for="form_phone">@lang('labels.phone')</label>
+                                            <input id="form_phone" name="mobile" class="form-control" type="text" placeholder="@lang('labels.enter_mobile')">
+                                            @if(!empty($errors->has('mobile')))
+                                                <div class="row col-lg-12">
+                                                    <div class="alert alert-danger">
+                                                        <span>{{ $errors->first('mobile') }}</span>
+                                                    </div>
+                                                </div>
+                                            @endif 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="form_name">Message</label>
-                                    <textarea id="form_message" name="form_message" class="form-control required" rows="5" placeholder="Enter Message" aria-required="true"></textarea>
+                                    <label for="form_name">@lang('labels.message')</label>
+                                    <textarea id="form_message" name="message" class="form-control required" rows="5" placeholder="@lang('labels.enter_message')" aria-required="true"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                                    <button type="submit" class="btn btn-green mr-2">Send Message</button>
-                                    <button type="reset" class="btn btn-default">Reset</button>
+                                    <button type="submit" class="btn btn-green mr-2">@lang('labels.send_message')</button>
+                                    <button type="reset" class="btn btn-default">@lang('labels.reset')</button>
                                 </div>
                             </form>
                         </div>
